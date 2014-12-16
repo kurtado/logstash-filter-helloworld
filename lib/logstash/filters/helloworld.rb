@@ -1,3 +1,4 @@
+# encoding: utf-8
 # Call this file 'helloworld.rb'
 require "logstash/filters/base"
 require "logstash/namespace"
@@ -8,7 +9,7 @@ class LogStash::Filters::Helloworld < LogStash::Filters::Base
   # configure this filter from your Logstash config.
   #
   # filter {
-  #   helloworld { ... }
+  #   helloworld { new_message => "Hello World" }
   # }
   config_name "helloworld"
 
@@ -25,8 +26,7 @@ class LogStash::Filters::Helloworld < LogStash::Filters::Base
 
   public
   def filter(event)
-
-    if @message
+    if @new_message
       # Replace the event message with our message as configured in the
       # config file.
       event["message"] = @new_message
